@@ -1,0 +1,7 @@
+
+
+
+IGV = 2123232
+puts IGV
+
+puts File.read(__FILE__)
