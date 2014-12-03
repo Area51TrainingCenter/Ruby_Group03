@@ -1,0 +1,28 @@
+rails new XXXXXX
+rails new real_app -d mysql
+cd XXXXXX
+
+#rails generate model
+#rails generate resource
+#rails generate controller
+#rails generate migration
+#rails generate scaffold 
+
+rails generate scaffold book title:string description:text published_at:datetime
+
+# Actualizar la BD
+rake db:migrate
+
+#RAILS_ENV=production rake db:migrate
+
+rails generate scaffold author first_name:string last_name:string
+
+#rails generate scaffold category name
+rails g scaffold category name
+
+rake db:migrate
+
+rails server
+
+
+#rails g scaffold chapter name
