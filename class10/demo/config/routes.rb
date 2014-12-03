@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
+  resources :book_categories
+
   resources :categories
 
   resources :authors
 
   resources :books
+
+  get "libros" => "books#index"
+  get "maslibros", to: redirect("http://amazon.com")
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

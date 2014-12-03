@@ -1,5 +1,5 @@
-<h1>Listing books</h1>
-
+<marquee><h1>Bienvenido a la biblioteca</h1>
+</marquee>
 <table>
   <thead>
     <tr>
@@ -16,7 +16,7 @@
         <td><%= book.title %></td>
         <td><%= book.description %></td>
         <td><%= book.published_at %></td>
-        <td><%= link_to 'Show', book %></td>
+        <td><%= link_to 'Ver', book %></td>
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
         <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Book', new_book_path %>
+<%= link_to 'Crear algo', new_book_path %>
