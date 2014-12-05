@@ -2,7 +2,7 @@
 
 <p>
   <strong>Title:</strong>
-  <%= @book.title %>
+  <%= sanitize @book.title.html_safe %>
 </p>
 
 <p>

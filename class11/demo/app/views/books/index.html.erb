@@ -1,5 +1,14 @@
 <marquee><h1>Bienvenido a la biblioteca</h1>
 </marquee>
+
+<div>
+  <%= form_tag "/search" do %>
+    <%= text_field_tag "terms" %>
+    <%= submit_tag "Buscar" %>
+  <% end %>
+</div>
+
+
 <table>
   <thead>
     <tr>

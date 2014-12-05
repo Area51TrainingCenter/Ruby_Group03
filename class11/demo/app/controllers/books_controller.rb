@@ -12,6 +12,14 @@ class BooksController < ApplicationController
   def show
   end
 
+  def search
+    #@books = Book.where(title: params["terms"])   %hola%
+    #@books = Book.where("title like ?", "%" + params["terms"]  + "%")
+    @books = Book.where("title like ?", "%#{params["terms"]}")    
+    #Book.find_by_sql("select * from books"
+    render "index"
+  end
+
   # GET /books/new
   def new
     @book = Book.new
@@ -34,6 +42,15 @@ class BooksController < ApplicationController
         format.html { render :new }
         format.json { render json: @book.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def create
+    @book = Book.new(book_params)
+    if @book.save
+      redirect_to @book
+    else
+      render :new
     end
   end
 
