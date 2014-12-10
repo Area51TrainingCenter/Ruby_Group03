@@ -1,37 +1,14 @@
 Rails.application.routes.draw do
-  resources :book_categories
-
-  resources :categories
-
-  resources :contacts
-
-  resources :authors
-  
-  #get "books/:year" => "books#index", constraints: {year: /\d{4}/ }
-  #get "books/:year(/:month)" => "books#index", constraints: {year: /\d{4}/, month: /\d{1,2}/ }
-  get "/books" => "books#index"
-  get "books/:year(/:month(/:day))" => "books#index", constraints: {year: /\d{4}/, month: /\d{1,2}/ }
-
-
-  # DSL  = Domain Specific Language
+  resources :reviews
+  # /books/:id/reviews
   resources :books do
-    member do
-      post 'publish'
-    end
-
-    collection do
-      get 'search'
-      post 'search'
-      #delete "armageddon"
+    resources :reviews do
+      # /books/:book_id/reviews/:review_id/comments
+      resources :comments
     end
   end
+  root 'books#index'
 
-  get "amazon" => "books#amazon", as: :bookstore
-
-
-  get "libros" => "books#index"
-  get "info.:format" => "books#info"
-  get "maslibros", to: redirect("http://amazon.com")
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

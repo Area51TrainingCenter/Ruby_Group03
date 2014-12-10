@@ -4,36 +4,12 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    if params[:year]
-      date   = Date.new(params[:year].to_i, 1,1) # year, month, day
-      range  = date.beginning_of_year..date.end_of_year
-      @books = Book.where(created_at: range)
-    else
-      @books = Book.all
-    end
+    @books = Book.all
   end
 
   # GET /books/1
   # GET /books/1.json
   def show
-  end
-
-  def info
-    @book = Book.new
-    respond_to do |format|
-      format.html { 
-        redirect_to books_patg
-      } 
-      format.json
-    end
-  end
-
-  def search
-    #@books = Book.where(title: params["terms"])   %hola%
-    @books = Book.where("title like ?", "%" + params["terms"]  + "%")
-    @books = Book.where("title like ?", "%#{params["terms"]}")    
-    #Book.find_by_sql("select * from books"
-    render "index"
   end
 
   # GET /books/new
@@ -58,15 +34,6 @@ class BooksController < ApplicationController
         format.html { render :new }
         format.json { render json: @book.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  def create
-    @book = Book.new(book_params)
-    if @book.save
-      redirect_to @book
-    else
-      render :new
     end
   end
 
@@ -102,6 +69,6 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:title, :description, :published_at, :author_id, :category_ids => [])
+      params.require(:book).permit(:title, :description)
     end
 end
