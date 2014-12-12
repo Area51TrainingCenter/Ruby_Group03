@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+
 	def index
 		if params[:book_id]
 			@reviews = Review.where(book_id: params[:book_id])
@@ -6,6 +7,7 @@ class ReviewsController < ApplicationController
 			@reviews = Review.all
 		end
 	end
+
 
 	def new
 		@review = Review.new(book_id: params[:book_id])	

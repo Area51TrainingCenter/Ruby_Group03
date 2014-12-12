@@ -1,11 +1,22 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
+  def search
+    filters = "%#{params[:terms]}%"
+    @books = Book.where("title like ?", filters)
+    render :index  # render o redirect
+  end
+
   # GET /books
   # GET /books.json
   def index
     @books = Book.all
   end
+
+  #AJAX = Asynchronous Javascript and XML/JSON
+  # HTTPRequest 
+  # XMLHTTPRequest -> Hotmail
+
 
   # GET /books/1
   # GET /books/1.json
@@ -59,6 +70,20 @@ class BooksController < ApplicationController
       format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+
+  def publish
+    if params[:id]
+      book = Book.find(param[:id])
+      book.publish!
+    else
+      books = Book.find(params[:ids])
+      books.each do |book|
+        book.publish!
+      end
+    end
+
   end
 
   private

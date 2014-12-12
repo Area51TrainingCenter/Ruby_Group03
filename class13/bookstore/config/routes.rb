@@ -1,12 +1,32 @@
 Rails.application.routes.draw do
+  
+  # /reviews/.....
+
   resources :reviews
   # /books/:id/reviews
+
+
   resources :books do
+
+    member do
+      post 'publish'  #  /books/:id/publish   publish_book  
+    end
+  
+    collection do
+      post 'search' #  /books/search   search_books  path: "buscar"   #
+      post 'publish' #     publish_books   "/books/publish?ids=1,2,3,4,5"
+    end
+
+    # /books/:id/reviews/.....
     resources :reviews do
       # /books/:book_id/reviews/:review_id/comments
       resources :comments
     end
+
   end
+
+  #get "/buscar" => "books#search"
+
   root 'books#index'
 
 
