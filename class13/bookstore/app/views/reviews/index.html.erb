@@ -1,0 +1,13 @@
+Reviews de xxxx
+
+<% @reviews.each do |review| %>
+	<h2><%= review.title %><h2>
+	<h3><%= review.author_name %><h3>
+	<%= simple_format review.content %>
+	<em><%= review.written_at %></em>
+	<strong><%= review.rating %></strong>
+<% end %>
+
+<% if params[:book_id] %>
+<%= link_to "Crear review", new_book_review_path %>
+<% end %>
