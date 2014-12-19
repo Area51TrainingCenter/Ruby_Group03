@@ -1,3 +1,9 @@
 Bienvenido a mi sitio
 
 <%= link_to "Iniciar sesión con Facebook", user_omniauth_authorize_path(:facebook) %>
+
+<%= link_to "Iniciar sesión con Twitter", user_omniauth_authorize_path(:twitter) %>
+
+<% if @image %>
+	<%= image_tag @image %>
+<% end %>
