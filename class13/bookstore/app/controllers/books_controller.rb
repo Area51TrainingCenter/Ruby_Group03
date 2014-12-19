@@ -10,6 +10,8 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
+    logger.info "test"
+    cookies[:lalala] = true
     @books = Book.all
   end
 
