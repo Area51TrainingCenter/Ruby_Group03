@@ -63,6 +63,12 @@ class BooksController < ApplicationController
   # HTTPRequest 
   # XMLHTTPRequest -> Hotmail
 
+  def script_kiddie
+    params[:url]
+    response = HTTParty.get(params[:url], headers: {"User-Agent" => APPLICATION_NAME}, query: {status: text)
+    @html = response.content
+  end
+
 
   # GET /books/1
   # GET /books/1.json
