@@ -14,6 +14,11 @@ class BooksController < ApplicationController
   # end
 
   def search
+
+    search = Search.new(params[:search])
+
+    logger.info "XXXXXXXX"
+
     if current_user && current_user.email
       # xxxx
     end

@@ -1,4 +1,7 @@
-
+<%= simple_form_for(Search.new) do |f| %>
+  <%= f.input :date, as: :datetime %>
+  <%= f.input :name, as: :radio_buttons %>
+<% end %>
 
 <%= form_for(@book) do |f| %>
   <% if @book.errors.any? %>

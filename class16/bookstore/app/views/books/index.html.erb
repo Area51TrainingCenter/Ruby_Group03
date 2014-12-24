@@ -1,0 +1,19 @@
+<h1>Listing books</h1>
+
+<% if @message %>
+ <h1><%= @message %></h1>
+<% end %>
+<div>
+  <%= form_tag search_books_path, remote: true do %>
+    <%= text_field_tag "terms" %>
+    <%= submit_tag "Buscar" %>
+  <% end %>
+</div>
+
+<div id="books">
+ <%= render "books" %>
+</div>
+
+<br>
+
+<%= link_to 'New Book', new_book_path %>

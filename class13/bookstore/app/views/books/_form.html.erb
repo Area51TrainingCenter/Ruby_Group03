@@ -1,3 +1,11 @@
+<%= form_tag search_books_path %>
+  <% text_field_tag "nombre" %>
+  <% text_field_tag "direccion" %>
+  <% radio_button_tag "opcion", "1", true %>
+  <% radio_button_tag "opcion", "2", false %>
+<% end %>
+
+
 <%= form_for(@book) do |f| %>
   <% if @book.errors.any? %>
     <div id="error_explanation">

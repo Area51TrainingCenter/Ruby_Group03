@@ -2,9 +2,24 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
   def search
+
+    Product.where(name: params[:nombre]).
+            where(address: params[:direccion]).
+            where(option: params[:opcion])
+    
+    # select * from products where name = XXX and address = XXXX and option = YYY
+
+
+
     filters = "%#{params[:terms]}%"
     @books = Book.where("title like ?", filters)
+    
+    product = Product.first
+    product.update_stock
+
     render :index  # render o redirect
+
+
   end
 
   # GET /books
@@ -13,6 +28,18 @@ class BooksController < ApplicationController
     logger.info "test"
     cookies[:lalala] = true
     @books = Book.all
+  end
+
+
+  def results
+    @products = Product.where(name: params[:1234])
+    respond_to do |format|
+      format.json { }
+    end
+  end
+
+  def xxxx
+    
   end
 
   #AJAX = Asynchronous Javascript and XML/JSON
